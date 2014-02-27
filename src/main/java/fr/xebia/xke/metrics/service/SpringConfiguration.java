@@ -25,6 +25,7 @@ import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import com.codahale.metrics.jvm.ThreadStatesGaugeSet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import java.lang.management.ManagementFactory;
 
@@ -39,7 +40,7 @@ public class SpringConfiguration {
      * TODO Build the registry
      * @return
      */
-    @Bean
+    @Bean @Scope
     MetricRegistry provideMetricsRegistry(){
 
         MetricRegistry result = new MetricRegistry();

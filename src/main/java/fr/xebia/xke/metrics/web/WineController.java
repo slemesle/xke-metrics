@@ -16,8 +16,19 @@
  */
 package fr.xebia.xke.metrics.web;
 
+import com.codahale.metrics.Gauge;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.RatioGauge;
+import com.google.common.base.Function;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import fr.xebia.xke.metrics.GuavaCacheMetricsSet;
 import fr.xebia.xke.metrics.model.Wine;
 import fr.xebia.xke.metrics.service.WineService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,7 +36,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by slemesle on 25/02/2014.
@@ -34,16 +50,98 @@ import javax.annotation.Resource;
 @RequestMapping("/rest/*")
 public class WineController {
 
+    private static final Logger log = LoggerFactory.getLogger(WineController.class);
+
     @Resource
     WineService wineService;
 
 
-    @RequestMapping(value = "/wine/{name}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Wine> findByName(@PathVariable String name){
+    // TODO inject Metrics Registry
+    @Resource
+    MetricRegistry metricRegistry;
 
-        Wine result = wineService.findByName(name);
+    final LoadingCache<String, List<Wine>> searchCache;
+
+    public WineController() {
+        searchCache = CacheBuilder.newBuilder().maximumSize(200)
+                .expireAfterAccess(2, TimeUnit.MINUTES).recordStats()
+                .build(CacheLoader.from(new Function<String, List<Wine>>() {
+                    @Override
+                    public List<Wine> apply(String _name) {
+                        return wineService.findByName(_name);
+                    }
+                }));
+    }
+
+    @PostConstruct
+    public void doPostInit(){
+/*
+        // TODO Add a gauge to registry for cache size
+        metricRegistry.register(MetricRegistry.name(WineController.class, "search", "cache", "size"), new Gauge<Long>() {
+            @Override
+            public Long getValue() {
+                return searchCache.size();
+            }
+        });
+        // TODO Add a gauge to registry for cache hits
+        metricRegistry.register(MetricRegistry.name(WineController.class, "search", "cache", "hits"), new Gauge<Long>() {
+            @Override
+            public Long getValue() {
+                return searchCache.stats().hitCount();
+            }
+        });
+        // TODO Add a gauge to registry for cache miss
+        metricRegistry.register(MetricRegistry.name(WineController.class, "search", "cache", "miss"), new Gauge<Long>() {
+            @Override
+            public Long getValue() {
+                return searchCache.stats().missCount();
+            }
+        });        // TODO Add a gauge to registry for cache hit ratio
+        metricRegistry.register(MetricRegistry.name(WineController.class, "search", "cache", "miss"), new RatioGauge() {
+            @Override
+            protected Ratio getRatio() {
+                return Ratio.of(searchCache.stats().hitCount(), searchCache.stats().requestCount());
+            }
+
+        });
+*/
+
+        // TODO Register new created MetricSet
+        metricRegistry.registerAll(new GuavaCacheMetricsSet(searchCache, MetricRegistry.name(WineController.class, "search", "cache" ) ));
+    }
+
+    @RequestMapping(value = "/wine/{name}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Wine> loadByName(@PathVariable String name) {
+
+        Wine result = wineService.loadByName(name);
 
         return new ResponseEntity<Wine>(result, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/wine/search/{name}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<List<Wine>> findByName(@PathVariable String name) {
+
+        List<Wine> result = wineService.findByName(name);
+
+        return new ResponseEntity<List<Wine>>(result, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "/cached/wine/search/{name}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<List<Wine>> findCachedByName(@PathVariable String name) {
+
+        List<Wine> result = null;
+        try {
+            result = searchCache.get(name);
+            log.info(searchCache.stats().toString());
+            return new ResponseEntity<List<Wine>>(result, HttpStatus.OK);
+        } catch (ExecutionException e) {
+            log.error("Failed to access data in cache", e);
+        }
+
+
+        return new ResponseEntity<List<Wine>>(new ArrayList<Wine>(), HttpStatus.NO_CONTENT);
+    }
+
 
 }

@@ -30,7 +30,7 @@
         <servlet-name>metricsServlet</servlet-name>
         <servlet-class>com.codahale.metrics.servlets.MetricsServlet</servlet-class>
         <init-param>
-            <param-name>show-jvm-metrics</param-name>
+            <param-name>MetricsServlet.showSamples</param-name>
             <param-value>true</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

@@ -27,7 +27,7 @@ public class Wine {
     private final String img;
 
 
-    public Wine(String name, String description, String img) {
+    public Wine(String name, String description, String img, int cru) {
 
         this.name = name;
         this.description = description;
@@ -46,5 +46,13 @@ public class Wine {
 
     public String getImg() {
         return img;
+    }
+
+    public boolean match(String _name) {
+        boolean res = true;
+        if (!name.contains(_name)  && !description.contains(_name)){
+            res = false;
+        }
+        return res;
     }
 }
