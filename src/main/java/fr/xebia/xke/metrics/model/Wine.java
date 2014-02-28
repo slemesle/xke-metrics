@@ -25,13 +25,17 @@ public class Wine {
     private final String name;
     private final String description;
     private final String img;
+    private final int cru;
+    private final Region region;
 
 
-    public Wine(String name, String description, String img, int cru) {
+    public Wine(String name, String description, String img, int cru, Region region) {
 
         this.name = name;
         this.description = description;
         this.img = img;
+        this.cru = cru;
+        this.region = region;
     }
 
 
@@ -46,6 +50,15 @@ public class Wine {
 
     public String getImg() {
         return img;
+    }
+
+
+    public int getCru() {
+        return cru;
+    }
+
+    public Region getRegion() {
+        return region;
     }
 
     public boolean match(String _name) {

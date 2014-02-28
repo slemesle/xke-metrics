@@ -55,7 +55,6 @@ public class SpringConfiguration {
         JmxReporter reporter = JmxReporter.forRegistry(result).build();
         reporter.start();
 
-
         return result;
 
     }

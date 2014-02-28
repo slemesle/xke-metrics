@@ -16,22 +16,24 @@
  */
 package fr.xebia.xke.metrics.web;
 
-import com.codahale.metrics.Gauge;
 import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.RatioGauge;
+import com.codahale.metrics.Timer;
 import com.google.common.base.Function;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import fr.xebia.xke.metrics.GuavaCacheMetricsSet;
 import fr.xebia.xke.metrics.model.Wine;
+import fr.xebia.xke.metrics.service.OrderService;
 import fr.xebia.xke.metrics.service.WineService;
+import fr.xebia.xke.metrics.model.OrderResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,18 +53,24 @@ import java.util.concurrent.TimeUnit;
 public class WineController {
 
     private static final Logger log = LoggerFactory.getLogger(WineController.class);
+    private final Timer cachedSearchTimer;
+    private final Timer directSearchTimer;
+    private final MetricRegistry metricRegistry;
 
     @Resource
-    WineService wineService;
+    private WineService wineService;
 
-
-    // TODO inject Metrics Registry
     @Resource
-    MetricRegistry metricRegistry;
+    private OrderService orderService;
+
+
 
     final LoadingCache<String, List<Wine>> searchCache;
 
-    public WineController() {
+    // TODO inject Metrics Registry
+    @Autowired
+    public WineController(MetricRegistry metricRegistry) {
+        this.metricRegistry = metricRegistry;
         searchCache = CacheBuilder.newBuilder().maximumSize(200)
                 .expireAfterAccess(2, TimeUnit.MINUTES).recordStats()
                 .build(CacheLoader.from(new Function<String, List<Wine>>() {
@@ -71,6 +79,11 @@ public class WineController {
                         return wineService.findByName(_name);
                     }
                 }));
+
+
+        //TODO add two timers to monitor find service response time in cached and direct mode
+        cachedSearchTimer = metricRegistry.timer("find.cached");
+        directSearchTimer = metricRegistry.timer("find.direct");
     }
 
     @PostConstruct
@@ -121,26 +134,55 @@ public class WineController {
     @RequestMapping(value = "/wine/search/{name}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Wine>> findByName(@PathVariable String name) {
 
-        List<Wine> result = wineService.findByName(name);
+        Timer.Context time = directSearchTimer.time();
 
-        return new ResponseEntity<List<Wine>>(result, HttpStatus.OK);
+        try {
+            List<Wine> result = wineService.findByName(name);
+
+            return new ResponseEntity<List<Wine>>(result, HttpStatus.OK);
+        } finally {
+            time.stop();
+        }
     }
 
 
     @RequestMapping(value = "/cached/wine/search/{name}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Wine>> findCachedByName(@PathVariable String name) {
+        Timer.Context time = cachedSearchTimer.time();
 
-        List<Wine> result = null;
+
         try {
-            result = searchCache.get(name);
-            log.info(searchCache.stats().toString());
-            return new ResponseEntity<List<Wine>>(result, HttpStatus.OK);
-        } catch (ExecutionException e) {
-            log.error("Failed to access data in cache", e);
+            List<Wine> result = null;
+            try {
+                result = searchCache.get(name);
+                log.info(searchCache.stats().toString());
+                return new ResponseEntity<List<Wine>>(result, HttpStatus.OK);
+            } catch (ExecutionException e) {
+                log.error("Failed to access data in cache", e);
+            }
+            return new ResponseEntity<List<Wine>>(new ArrayList<Wine>(), HttpStatus.NO_CONTENT);
+        } finally {
+            time.stop();
         }
+    }
+
+    @RequestMapping(value = "/wine/{name}/buy", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<OrderResponse> placeWineOrder(@PathVariable String name){
+
+        return new ResponseEntity<OrderResponse>(orderService.placeOrder(wineService.loadByName(name)), HttpStatus.NO_CONTENT);
+    }
 
 
-        return new ResponseEntity<List<Wine>>(new ArrayList<Wine>(), HttpStatus.NO_CONTENT);
+    /**
+     * TODO Add a meter to monitor error rate
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception e){
+
+        metricRegistry.meter("wine.controler.exception").mark();
+        return new ResponseEntity<ErrorResponse>(new ErrorResponse(e), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
