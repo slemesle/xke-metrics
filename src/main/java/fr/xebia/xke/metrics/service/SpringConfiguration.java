@@ -40,7 +40,7 @@ public class SpringConfiguration {
      * TODO Build the registry
      * @return
      */
-    @Bean @Scope
+    @Bean(name = "metricRegistry") @Scope
     MetricRegistry provideMetricsRegistry(){
 
         MetricRegistry result = new MetricRegistry();
@@ -63,7 +63,7 @@ public class SpringConfiguration {
      * TODO Build the registry
      * @return
      */
-    @Bean
+    @Bean(name = "healthCheckRegistry")
     HealthCheckRegistry provideHealthChecksRegistry(){
         return new HealthCheckRegistry();
     }

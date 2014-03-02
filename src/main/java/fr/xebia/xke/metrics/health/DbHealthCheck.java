@@ -40,7 +40,7 @@ public class DbHealthCheck extends HealthCheck {
         this.registry = registry;
         this.dbService = dbService;
 
-        registry.register("database", this);
+     //   registry.register("database", this);
     }
 
     @Override

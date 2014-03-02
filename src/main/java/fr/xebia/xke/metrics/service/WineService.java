@@ -17,6 +17,8 @@
 package fr.xebia.xke.metrics.service;
 
 import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.annotation.ExceptionMetered;
+import com.codahale.metrics.annotation.Timed;
 import fr.xebia.xke.metrics.WineUtils;
 import fr.xebia.xke.metrics.model.Region;
 import fr.xebia.xke.metrics.model.Wine;
@@ -52,7 +54,9 @@ public class WineService {
     );
 
 
-
+    // TODO Add Timed and ExceptionMetered annotations to demonstrate spring integration
+    @Timed(name = "metrics.loadbyname.time")
+    @ExceptionMetered(name = "metrics.loadbyname.error" )
     public Wine loadByName(String name) {
 
         WineUtils.randomSleep();

@@ -37,7 +37,7 @@ public class OrderHealthCheck extends HealthCheck {
         this.registry = registry;
         this.orderService = orderService;
 
-        registry.register("PaypalOrder", this);
+        //registry.register("PaypalOrder", this);
     }
 
     @Override
