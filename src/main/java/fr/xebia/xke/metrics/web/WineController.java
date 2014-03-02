@@ -145,11 +145,9 @@ public class WineController {
         }
     }
 
-
     @RequestMapping(value = "/cached/wine/search/{name}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Wine>> findCachedByName(@PathVariable String name) {
         Timer.Context time = cachedSearchTimer.time();
-
 
         try {
             List<Wine> result = null;

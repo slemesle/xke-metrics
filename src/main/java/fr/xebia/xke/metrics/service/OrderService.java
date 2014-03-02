@@ -55,4 +55,10 @@ public class OrderService {
 
     }
 
+    public boolean pingPaypal() {
+
+        WineUtils.randomSleep();
+        WineUtils.randomException("Paypal unavailable");
+        return WineUtils.randomBoolean();
+    }
 }

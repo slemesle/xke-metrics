@@ -32,8 +32,18 @@ public class WineUtils {
 
 
     public static void randomException() {
-        if ((long) Math.abs(Math.random()*1000) < 500){
+        if ((long) Math.abs(Math.random()*1000) % 57 == 0 ){
             throw new RuntimeException("Random Exception Raised");
         }
+    }
+
+    public static void randomException(String s) {
+        if ((long) Math.abs(Math.random()*1000) < 500){
+            throw new RuntimeException(s);
+        }
+    }
+
+    public static boolean randomBoolean() {
+        return Math.abs(Math.random()*1000) % 57 != 0;
     }
 }
