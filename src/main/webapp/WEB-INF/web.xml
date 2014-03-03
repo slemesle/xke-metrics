@@ -10,34 +10,17 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-<!-- TODO Declare Metrics Servlets -->
+<!--
+TODO Exercise 2 -  Declare Metrics Servlets :
+ com.codahale.metrics.servlets.AdminServlet maps to /admin/metrics
+ com.codahale.metrics.servlets.HealthCheckServlet maps to /admin/metrics/healthcheck
+ com.codahale.metrics.servlets.PingServlet maps to /admin/metrics/ping
+ com.codahale.metrics.servlets.MetricsServlet maps to /admin/metrics/metrics
+ com.codahale.metrics.servlets.ThreadDumpServlet maps to /admin/metrics/threads
+ -->
  <!--   <servlet>
         <servlet-name>metrics-admin</servlet-name>
         <servlet-class>com.codahale.metrics.servlets.AdminServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet>
-        <servlet-name>healthCheckServlet</servlet-name>
-        <servlet-class>com.codahale.metrics.servlets.HealthCheckServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet>
-        <servlet-name>pingServlet</servlet-name>
-        <servlet-class>com.codahale.metrics.servlets.PingServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet>
-        <servlet-name>metricsServlet</servlet-name>
-        <servlet-class>com.codahale.metrics.servlets.MetricsServlet</servlet-class>
-        <init-param>
-            <param-name>MetricsServlet.showSamples</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet>
-        <servlet-name>dumpServlet</servlet-name>
-        <servlet-class>com.codahale.metrics.servlets.ThreadDumpServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 -->
@@ -50,22 +33,7 @@
         <servlet-name>metrics-admin</servlet-name>
         <url-pattern>/admin/metrics</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>healthCheckServlet</servlet-name>
-        <url-pattern>/admin/metrics/healthcheck</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>pingServlet</servlet-name>
-        <url-pattern>/admin/metrics/ping</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>metricsServlet</servlet-name>
-        <url-pattern>/admin/metrics/metrics</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>dumpServlet</servlet-name>
-        <url-pattern>/admin/metrics/threads</url-pattern>
-    </servlet-mapping>-->
+-->
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -76,14 +44,7 @@
         <listener-class>fr.xebia.xke.metrics.web.MetricsAdminContextLoader</listener-class>
     </listener>
 
-<!--    TODO Add Instrumented Filter -->
-<!--    <filter>
-        <filter-name>metricsFilter</filter-name>
-        <filter-class>com.codahale.metrics.servlet.InstrumentedFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>metricsFilter</filter-name>
-        <url-pattern>/rest/*</url-pattern>
-    </filter-mapping>-->
-
+<!--    TODO  Exercise 2 - Add Instrumented Filter :
+ com.codahale.metrics.servlet.InstrumentedFilter maps to /rest/*
+ -->
 </web-app>

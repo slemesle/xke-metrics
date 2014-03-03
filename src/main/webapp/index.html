@@ -182,20 +182,27 @@
     </h3>
     <ul class="build">
         <li>Add metrics-servlet and metrics-servlets dependencies</li>
-        <li></li>
+        <li>Add Metrics servlets mapping in web.xml</li>
+        <li>Add InstrumentedFilter on top of spring mvc</li>
     </ul>
+    <div class="build" style="padding-top: 10%">
+        <p>
+        Now Browse youre webapp to <a href="http://localhost:8080/admin/metrics">metrics servlet</a> and appreciate
+        youre brand new URLs.
+        </p>
+        <p class="blue">
+            Run ab to generate metrics data:</p>
+            <section><pre class="lang-bash">
+ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre></section>
+        </p>
+    </div>
 </article>
 
-<article class='fill'>
-    <h3>
-        Image filling the slide (with optional header)
-    </h3>
+<article>
+    <h3>Exercise #3 - Add some default metics to the registry</h3>
     <p>
-        <img src='images/example-cat.jpg'>
+
     </p>
-    <div class='source white'>
-        Source: Eric Schmidt
-    </div>
 </article>
 
 <article>
