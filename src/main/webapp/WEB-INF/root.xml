@@ -1,7 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:metrics="http://www.ryantenney.com/schema/metrics"
 
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
@@ -9,11 +8,14 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-         http://www.ryantenney.com/schema/metrics
-           http://www.ryantenney.com/schema/metrics/metrics-3.0.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 <!--
 TODO Add Metrics Spring name space and annotation-driven configuration
+Namespace :
+       xmlns:metrics="http://www.ryantenney.com/schema/metrics"
+
+         http://www.ryantenney.com/schema/metrics
+           http://www.ryantenney.com/schema/metrics/metrics-3.0.xsd
 -->
 
     <context:component-scan base-package="fr.xebia.xke.metrics" />
@@ -21,6 +23,6 @@ TODO Add Metrics Spring name space and annotation-driven configuration
     <mvc:annotation-driven />
     <mvc:default-servlet-handler/>
 
-    <metrics:annotation-driven metric-registry="metricRegistry" health-check-registry="healthCheckRegistry"/>
+    <!--<metrics:annotation-driven metric-registry="metricRegistry" health-check-registry="healthCheckRegistry"/>-->
 
 </beans>

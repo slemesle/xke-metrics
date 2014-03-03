@@ -50,6 +50,10 @@
        padding-left: 25%;
    }
 
+    .center{
+        text-align: center ;
+    }
+
 </style>
 
 <body style='display: none'>
@@ -153,22 +157,33 @@
 
 <article>
     <h3>
-    Exercise #1 - Add Metrics dependency and setting
+    Exercise #1 - Add metrics-core dependency and provide it in SpringConfiguration
     </h3>
-    <p>
+    <section>
+        <pre>
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.codahale.metrics&lt;/groupId&gt;
+            &lt;artifactId&gt;metrics-core&lt;/artifactId&gt;
+            &lt;version&gt;3.0.1&lt;/version&gt;
+        &lt;/dependency&gt;
+        </pre>
+    </section>
+    <p class="center">
+    <comment>Check the TODO Exercise 1 !<br/>
+    SpringConfigurationTest TU should pass :)
+    </comment>
     </p>
 </article>
 
 <article>
     <h3>
-        Slide with an image (centered)
+     Exercise #2 - Instrument the web application using metrics servlets
     </h3>
-    <p>
-        <img class='centered' style='height: 500px' src='images/example-graph.png'>
-    </p>
-    <div class='source'>
-        Source: Larry Page
-    </div>
+    <ul class="build">
+        <li>Add metrics-servlet and metrics-servlets dependencies</li>
+        <li></li>
+    </ul>
 </article>
 
 <article class='fill'>

@@ -11,7 +11,7 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 <!-- TODO Declare Metrics Servlets -->
-    <servlet>
+ <!--   <servlet>
         <servlet-name>metrics-admin</servlet-name>
         <servlet-class>com.codahale.metrics.servlets.AdminServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -40,13 +40,13 @@
         <servlet-class>com.codahale.metrics.servlets.ThreadDumpServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
+-->
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
+<!--    <servlet-mapping>
         <servlet-name>metrics-admin</servlet-name>
         <url-pattern>/admin/metrics</url-pattern>
     </servlet-mapping>
@@ -65,7 +65,7 @@
     <servlet-mapping>
         <servlet-name>dumpServlet</servlet-name>
         <url-pattern>/admin/metrics/threads</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -77,13 +77,13 @@
     </listener>
 
 <!--    TODO Add Instrumented Filter -->
-    <filter>
+<!--    <filter>
         <filter-name>metricsFilter</filter-name>
         <filter-class>com.codahale.metrics.servlet.InstrumentedFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>metricsFilter</filter-name>
         <url-pattern>/rest/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 
 </web-app>

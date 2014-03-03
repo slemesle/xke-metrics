@@ -16,18 +16,10 @@
  */
 package fr.xebia.xke.metrics.service;
 
-import com.codahale.metrics.JmxReporter;
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.health.HealthCheckRegistry;
-import com.codahale.metrics.jvm.BufferPoolMetricSet;
-import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
-import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
-import com.codahale.metrics.jvm.ThreadStatesGaugeSet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
-import java.lang.management.ManagementFactory;
 
 /**
  * Created by slemesle on 26/02/2014.
@@ -37,16 +29,15 @@ public class SpringConfiguration {
 
 
     /**
-     * TODO Build the registry
+     * TODO Exercice 1 - 1 Build the MetricRegistry and return it. Also change the method Signature to return MetricRegistry
      * @return
      */
     @Bean(name = "metricRegistry") @Scope
-    MetricRegistry provideMetricsRegistry(){
+    Object provideMetricsRegistry(){
 
-        MetricRegistry result = new MetricRegistry();
 
         // TODO add JVM Metrics
-        result.registerAll(new GarbageCollectorMetricSet());
+     /*   result.registerAll(new GarbageCollectorMetricSet());
         result.registerAll(new MemoryUsageGaugeSet());
         result.registerAll(new ThreadStatesGaugeSet());
         result.registerAll(new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
@@ -54,18 +45,17 @@ public class SpringConfiguration {
         // TODO add JMX reporter
         JmxReporter reporter = JmxReporter.forRegistry(result).build();
         reporter.start();
-
-        return result;
-
+*/
+        return null;
     }
 
     /**
-     * TODO Build the registry
+     * TODO  Exercice 1 - 2 Build the HealthCheckRegistry and return it. Also change the method Signature to return HealthCheckRegistry
      * @return
      */
     @Bean(name = "healthCheckRegistry")
-    HealthCheckRegistry provideHealthChecksRegistry(){
-        return new HealthCheckRegistry();
+    Object provideHealthChecksRegistry(){
+        return null;
     }
 
 }

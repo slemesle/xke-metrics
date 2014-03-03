@@ -16,8 +16,6 @@
  */
 package fr.xebia.xke.metrics.web;
 
-import com.codahale.metrics.health.HealthCheck;
-import com.codahale.metrics.health.HealthCheckRegistry;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -35,12 +33,15 @@ import java.util.SortedMap;
 @Controller("/admin/*")
 public class HealthCheckControler {
 
+/*
     @Resource
     HealthCheckRegistry registry;
+*/
 
     @RequestMapping(value = "healthcheck", method = RequestMethod.GET, produces = "text/plain")
     public ResponseEntity<String> runChecks(){
 
+/*
         boolean healthy = true;
         StringBuilder sb = new StringBuilder();
         SortedMap<String,HealthCheck.Result> checks = registry.runHealthChecks();
@@ -55,8 +56,9 @@ public class HealthCheckControler {
             sb.append('|');
         }
         sb.deleteCharAt(sb.length() -1);
+*/
 
-        return new ResponseEntity<String>(sb.toString(),  healthy ? HttpStatus.OK : HttpStatus.PRECONDITION_FAILED);
+        return new ResponseEntity<String>(/*sb.toString(),  healthy ? */HttpStatus.OK /*: HttpStatus.PRECONDITION_FAILED*/);
     }
 
 

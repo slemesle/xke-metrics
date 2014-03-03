@@ -17,13 +17,11 @@
 package fr.xebia.xke.metrics.service;
 
 
-import com.codahale.metrics.MetricRegistry;
 import fr.xebia.xke.metrics.WineUtils;
 import fr.xebia.xke.metrics.model.OrderResponse;
 import fr.xebia.xke.metrics.model.Wine;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.UUID;
 
 /**
@@ -36,12 +34,14 @@ import java.util.UUID;
 public class OrderService {
 
 
+/*
     @Resource
     private MetricRegistry registry;
+*/
 
     public OrderResponse placeOrder(Wine wine){
 
-        registry.counter("order.running.count").inc();
+     //   registry.counter("order.running.count").inc();
 
         try {
             WineUtils.randomException();
@@ -50,7 +50,7 @@ public class OrderService {
             WineUtils.randomSleep();
             return response;
         } finally {
-            registry.counter("order.running.count").dec();
+       //     registry.counter("order.running.count").dec();
         }
 
     }

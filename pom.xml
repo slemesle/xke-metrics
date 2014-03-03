@@ -37,13 +37,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-<!--
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.1</version>
-        </dependency>
--->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
@@ -66,23 +59,12 @@
             <scope>provided</scope>
         </dependency>
 
-<!--  TODO      Add Metrics dependency    -->
-        <dependency>
-            <groupId>com.codahale.metrics</groupId>
-            <artifactId>metrics-core</artifactId>
-            <version>${metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codahale.metrics</groupId>
-            <artifactId>metrics-servlets</artifactId>
-            <version>${metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codahale.metrics</groupId>
-            <artifactId>metrics-servlet</artifactId>
-            <version>${metrics.version}</version>
-        </dependency>
-        <dependency>
+
+        <!--  TODO  Exercice 1  Add Metrics dependency    -->
+
+
+        <!--  TODO  Exercice 2  Add metrics-servlet and metrics-servlets dependencies    -->
+<!--        <dependency>
             <groupId>com.codahale.metrics</groupId>
             <artifactId>metrics-jvm</artifactId>
             <version>${metrics.version}</version>
@@ -91,6 +73,12 @@
             <groupId>com.ryantenney.metrics</groupId>
             <artifactId>metrics-spring</artifactId>
             <version>${metrics-spring.version}</version>
+        </dependency>-->
+<!--            Test dependencies       -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
         </dependency>
     </dependencies>
 

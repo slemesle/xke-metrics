@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2013  Séven Le Mesle
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,32 +14,32 @@
  * limitations under the License.
  * 
  */
+
 package fr.xebia.xke.metrics.health;
 
-import com.codahale.metrics.health.HealthCheck;
-import com.codahale.metrics.health.HealthCheckRegistry;
 import fr.xebia.xke.metrics.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
+ *
  * Created by slemesle on 02/03/2014.
- */
+*/
 @Component
-public class OrderHealthCheck extends HealthCheck {
+public class OrderHealthCheck /*extends HealthCheck*/ {
 
-    private final HealthCheckRegistry registry;
+    //private final HealthCheckRegistry registry;
     private final OrderService orderService;
 
     @Autowired
-    public OrderHealthCheck(HealthCheckRegistry registry, OrderService orderService) {
-        this.registry = registry;
+    public OrderHealthCheck(/*HealthCheckRegistry registry,*/ OrderService orderService) {
+        //this.registry = registry;
         this.orderService = orderService;
 
         //registry.register("PaypalOrder", this);
     }
 
+/*
     @Override
     protected Result check() throws Exception {
 
@@ -50,4 +50,5 @@ public class OrderHealthCheck extends HealthCheck {
         }
 
     }
+*/
 }

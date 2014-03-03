@@ -16,9 +16,6 @@
  */
 package fr.xebia.xke.metrics.service;
 
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.annotation.ExceptionMetered;
-import com.codahale.metrics.annotation.Timed;
 import fr.xebia.xke.metrics.WineUtils;
 import fr.xebia.xke.metrics.model.Region;
 import fr.xebia.xke.metrics.model.Wine;
@@ -37,8 +34,10 @@ public class WineService {
 
 
     // TODO Inject MetricRegistry
+/*
     @Resource
     private MetricRegistry metrics;
+*/
 
     private final List<Wine> repository = Arrays.asList(
             new Wine("Xebia premiére côte", "Short description", "http://img.xebia.fr/default.png", 2013, Region.BORDEAUX),
@@ -55,8 +54,8 @@ public class WineService {
 
 
     // TODO Add Timed and ExceptionMetered annotations to demonstrate spring integration
-    @Timed(name = "metrics.loadbyname.time")
-    @ExceptionMetered(name = "metrics.loadbyname.error" )
+//    @Timed(name = "metrics.loadbyname.time")
+//    @ExceptionMetered(name = "metrics.loadbyname.error" )
     public Wine loadByName(String name) {
 
         WineUtils.randomSleep();
@@ -64,7 +63,7 @@ public class WineService {
         for (Wine wine : repository) {
             if (name.equalsIgnoreCase(wine.getName())){
                   // TODO Add a meter to monitor region distribution rate in searches
-                metrics.meter(MetricRegistry.name("search.region.", wine.getRegion().name().toLowerCase())).mark();
+  //              metrics.meter(MetricRegistry.name("search.region.", wine.getRegion().name().toLowerCase())).mark();
 
                 return wine;
             }
@@ -80,7 +79,7 @@ public class WineService {
         for (Wine wine : repository) {
             if (wine.match(name)){
                 // TODO Add a meter to monitor region distribution rate in searches
-                metrics.meter(MetricRegistry.name("search.region", wine.getRegion().name().toLowerCase())).mark();
+    //            metrics.meter(MetricRegistry.name("search.region", wine.getRegion().name().toLowerCase())).mark();
                 res.add(wine);
             }
         }

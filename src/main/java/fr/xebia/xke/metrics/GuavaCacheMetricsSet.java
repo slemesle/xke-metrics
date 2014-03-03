@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * 
- */
+ *//*
+
 package fr.xebia.xke.metrics;
 
 import com.codahale.metrics.Gauge;
@@ -26,12 +27,14 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+*/
 /**
  *
  * TODO Implement the MetricSet contract to expose GuavaCache stats
  *
  * Created by slemesle on 27/02/2014.
- */
+ *//*
+
 public class GuavaCacheMetricsSet implements MetricSet {
 
     private final Cache<?, ?> cache;
@@ -124,3 +127,4 @@ public class GuavaCacheMetricsSet implements MetricSet {
         return Collections.unmodifiableMap(result);
     }
 }
+*/

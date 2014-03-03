@@ -16,12 +16,9 @@
  */
 package fr.xebia.xke.metrics.health;
 
-import com.codahale.metrics.health.HealthCheck;
-import com.codahale.metrics.health.HealthCheckRegistry;
 import fr.xebia.xke.metrics.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  *
@@ -30,20 +27,21 @@ import org.springframework.stereotype.Service;
  * Created by slemesle on 02/03/2014.
  */
 @Component
-public class DbHealthCheck extends HealthCheck {
+public class DbHealthCheck /*extends HealthCheck*/ {
 
-    private final HealthCheckRegistry registry;
+//    private final HealthCheckRegistry registry;
     private final DatabaseService dbService;
 
     @Autowired
-    public DbHealthCheck(HealthCheckRegistry registry, DatabaseService dbService ) {
-        this.registry = registry;
+    public DbHealthCheck(/*HealthCheckRegistry registry, */DatabaseService dbService ) {
+        //this.registry = registry;
+
         this.dbService = dbService;
 
      //   registry.register("database", this);
     }
 
-    @Override
+    /*@Override
     protected Result check() throws Exception {
          Result  result= null;
         if (dbService.ping()){
@@ -52,5 +50,5 @@ public class DbHealthCheck extends HealthCheck {
             result = Result.unhealthy("Got bad result on database select test");
         }
         return result;
-    }
+    }*/
 }
