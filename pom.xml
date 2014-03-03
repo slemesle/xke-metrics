@@ -64,11 +64,10 @@
 
 
         <!--  TODO  Exercice 2  Add metrics-servlet and metrics-servlets dependencies    -->
-<!--        <dependency>
-            <groupId>com.codahale.metrics</groupId>
-            <artifactId>metrics-jvm</artifactId>
-            <version>${metrics.version}</version>
-        </dependency>
+
+
+        <!--  TODO Exercise 3 Add metrics-jvm dependency  -->
+<!--
         <dependency>
             <groupId>com.ryantenney.metrics</groupId>
             <artifactId>metrics-spring</artifactId>

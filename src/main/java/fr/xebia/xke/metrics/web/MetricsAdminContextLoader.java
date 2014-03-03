@@ -8,11 +8,6 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-import javax.servlet.http.HttpSessionBindingEvent;
 
 /**
  *
@@ -31,10 +26,10 @@ public class MetricsAdminContextLoader extends ContextLoaderListener {
 
         WebApplicationContext context = (WebApplicationContext) sce.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 
-/* TODO Add Registries to servlet context
-        sce.getServletContext().setAttribute(MetricsServlet.METRICS_REGISTRY, context.getBean(MetricRegistry.class));
-        sce.getServletContext().setAttribute(InstrumentedFilter.REGISTRY_ATTRIBUTE, context.getBean(MetricRegistry.class));
-        sce.getServletContext().setAttribute(HealthCheckServlet.HEALTH_CHECK_REGISTRY, context.getBean(HealthCheckRegistry.class));
+/* TODO Exercise 2 - Add Registries to servlet context as attribute
+    MetricsServlet.METRICS_REGISTRY             -> MetricRegistry.class
+    InstrumentedFilter.REGISTRY_ATTRIBUTE       -> MetricRegistry.class
+    HealthCheckServlet.HEALTH_CHECK_REGISTRY    -> HealthCheckRegistry.class
 */
     }
 }

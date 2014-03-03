@@ -36,16 +36,13 @@ public class SpringConfiguration {
     Object provideMetricsRegistry(){
 
 
-        // TODO add JVM Metrics
-     /*   result.registerAll(new GarbageCollectorMetricSet());
-        result.registerAll(new MemoryUsageGaugeSet());
-        result.registerAll(new ThreadStatesGaugeSet());
-        result.registerAll(new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
+        // TODO Exercise 3 - add default JVM Metrics
+     /*
 
-        // TODO add JMX reporter
         JmxReporter reporter = JmxReporter.forRegistry(result).build();
         reporter.start();
 */
+        // TODO add JMX reporter
         return null;
     }
 

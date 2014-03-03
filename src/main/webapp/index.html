@@ -25,33 +25,38 @@
     /* Your individual styles here, or just use inline styles if that’s
        what you want. */
 
-  .slides.template-xebia article.xlogo {
-    background: white url(images/logo-alliance-97.png) 25% 50% no-repeat;
-  }
+    .slides.template-xebia article.xlogo {
+        background: white url(images/logo-alliance-97.png) 25% 50% no-repeat;
+    }
 
-  .slides.template-xebia article.metricslogo {
-    background: white url(images/xmetrics-hat.png) 5% 5% no-repeat;
-  }
+    .slides.template-xebia article.metricslogo {
+        background: white url(images/xmetrics-hat.png) 5% 5% no-repeat;
+    }
 
-  article.xlogo h1 {
-    padding-top: 10%;
-    padding-left:40%;
-  }
+    article.xlogo h1 {
+        padding-top: 10%;
+        padding-left: 40%;
+    }
+
     article.xlogo p {
         padding-left: 40%;
     }
-  
-  .slides.template-xebia > article:not(.nobackground):not(.xlogo):not(.metricslogo) {
-    background: white url(images/logo-alliance-97.png) 800px 650px no-repeat;
-    background-size:40px 40px;
-  }
 
-   img.left-img {
-       padding-left: 25%;
-   }
+    .slides.template-xebia > article:not(.nobackground):not(.xlogo):not(.metricslogo) {
+        background: white url(images/logo-alliance-97.png) 800px 650px no-repeat;
+        background-size: 40px 40px;
+    }
 
-    .center{
-        text-align: center ;
+    img.left-img {
+        padding-left: 25%;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .pad-top {
+        padding-top: 10%;
     }
 
 </style>
@@ -61,9 +66,10 @@
 <section class='slides layout-regular template-xebia'>
 
 <article class='xlogo'>
-  <h1>
+    <h1>
         XKE Metrics</h1>
-        <p>
+
+    <p>
         @slemesle, Mars 2014
     </p>
 </article>
@@ -81,13 +87,13 @@
 
 <article>
     <h1>Let see what's in the box ?</h1>
-    <img class="left-img" width="400px"  src="images/mystery-box1.jpg"/>
+    <img class="left-img" width="400px" src="images/mystery-box1.jpg"/>
 
 </article>
 
 <article>
     <h3>
-    Gauges, represent an instantaneous value
+        Gauges, represent an instantaneous value
     </h3>
     <img src="images/gauge.jpg" style="padding-left: 25%; padding-top: 5%"/>
 </article>
@@ -96,7 +102,7 @@
     <h3>
         Counter, is a Gauge backed by an AtomicInteger
     </h3>
-    <comment><i>You can increment or decrement them</i> </comment>
+    <comment><i>You can increment or decrement them</i></comment>
     <img src="images/finger_count.jpg" style="padding-top: 20% " width="800px">
 </article>
 
@@ -135,14 +141,17 @@
     <h1>
         You know all you need, now let's play !
     </h1>
-    <comment>Keep in mind, you can always browse the documentation <a href="http://metrics.codahale.com/manual/" target="_blank">here</a>.</comment>
+    <comment>Keep in mind, you can always browse the documentation <a href="http://metrics.codahale.com/manual/"
+                                                                      target="_blank">here</a>.
+    </comment>
 </article>
 
 <article style="text-align: center">
     <h1>
         Checkout the repository
     </h1>
-    <p >
+
+    <p>
         <a href="https://github.com/slemesle/xke-metrics">https://github.com/slemesle/xke-metrics</a>
     </p>
 </article>
@@ -151,13 +160,15 @@
     <h1>
         Run the webserver
     </h1>
+
     <p>mvn jetty:run</p>
+
     <h2>You can now browse the slides on <a href="http://localhost:8080/">http://localhost:8080/</a></h2>
 </article>
 
 <article>
     <h3>
-    Exercise #1 - Add metrics-core dependency and provide it in SpringConfiguration
+        Exercise #1 - Add metrics-core dependency and provide it in SpringConfiguration
     </h3>
     <section>
         <pre>
@@ -171,14 +182,14 @@
     </section>
     <p class="center">
     <comment>Check the TODO Exercise 1 !<br/>
-    SpringConfigurationTest TU should pass :)
+        SpringConfigurationTest TU should pass :)
     </comment>
     </p>
 </article>
 
 <article>
     <h3>
-     Exercise #2 - Instrument the web application using metrics servlets
+        Exercise #2 - Instrument the web application using metrics servlets
     </h3>
     <ul class="build">
         <li>Add metrics-servlet and metrics-servlets dependencies</li>
@@ -187,22 +198,36 @@
     </ul>
     <div class="build" style="padding-top: 10%">
         <p>
-        Now Browse youre webapp to <a href="http://localhost:8080/admin/metrics">metrics servlet</a> and appreciate
-        youre brand new URLs.
+            Now Browse youre webapp to <a href="http://localhost:8080/admin/metrics">metrics servlet</a> and appreciate
+            youre brand new URLs.
         </p>
+
         <p class="blue">
             Run ab to generate metrics data:</p>
-            <section><pre class="lang-bash">
-ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre></section>
+        <section><pre class="lang-bash">
+ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre>
+        </section>
         </p>
     </div>
 </article>
 
 <article>
-    <h3>Exercise #3 - Add some default metics to the registry</h3>
-    <p>
+    <h3>Exercise #3 - Add some default metrics to the registry</h3>
 
-    </p>
+    <div class="build pad-top">
+        <p>
+            First add metrics-jvm dependency.
+        </p>
+
+        <p>
+            Then, simply add provided MetricSet to the registry.<br/>
+            We need : GarbageCollectorMetricSet, MemoryUsageGaugeSet, ThreadStatesGaugeSet and a BufferPoolMetricSet.
+        </p>
+
+        <p>
+           Browse the <a href="http://localhost:8080/admin/metrics/metrics">metrics</a> servlet to see changes.
+        </p>
+    </div>
 </article>
 
 <article>
@@ -257,6 +282,7 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre></section
     <q>
         The best way to predict the future is to invent it.
     </q>
+
     <div class='author'>
         Alan Kay
     </div>
@@ -267,6 +293,7 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre></section
         A distributed system is one in which the failure of a computer
         you didn’t even know existed can render your own computer unusable.
     </q>
+
     <div class='author'>
         Leslie Lamport
     </div>
