@@ -32,13 +32,13 @@ import java.util.SortedMap;
  * TODO Implement a custom healthceck controller
  * Created by slemesle on 02/03/2014.
  */
-@Controller("/admin/healthcheck")
+@Controller("/admin/*")
 public class HealthCheckControler {
 
     @Resource
     HealthCheckRegistry registry;
 
-    @RequestMapping(method = RequestMethod.GET, produces = "text/plain")
+    @RequestMapping(value = "healthcheck", method = RequestMethod.GET, produces = "text/plain")
     public ResponseEntity<String> runChecks(){
 
         boolean healthy = true;
