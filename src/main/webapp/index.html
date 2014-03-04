@@ -11,111 +11,10 @@
     <meta charset='utf-8'>
     <script
             src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+
+    <link href="styles/styles.css" type="text/css" />
 </head>
 
-<style>
-
-    .slides.template-xebia article.xlogo {
-        background: white url(images/logo-alliance-97.png) 25% 50% no-repeat;
-    }
-
-    .slides.template-xebia article.metricslogo {
-        background: white url(images/xmetrics-hat.png) 5% 5% no-repeat;
-    }
-
-    article.xlogo h1 {
-        padding-top: 10%;
-        padding-left: 40%;
-    }
-
-    article.xlogo p {
-        padding-left: 40%;
-    }
-
-    .slides.template-xebia > article:not(.nobackground):not(.xlogo):not(.metricslogo) {
-        background: white url(images/logo-alliance-97.png) 800px 650px no-repeat;
-        background-size: 40px 40px;
-    }
-
-    img.left-img {
-        padding-left: 25%;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .pad-top {
-        padding-top: 10%;
-    }
-
-   @-webkit-keyframes rotate {
-       from {
-           transform:rotate(0deg);
-
-       }
-       50% {
-           transform:rotate(90deg);
-
-       }
-       to {
-           transform:rotate(180deg);
-
-       }
-   }
-   @-moz-keyframes rotate {
-       from {
-           transform:rotate(0deg);
-
-       }
-       50% {
-           transform:rotate(90deg);
-
-       }
-       to {
-           transform:rotate(180deg);
-
-       }
-   }
-   @-ms-keyframes rotate {
-       from {
-           transform:rotate(0deg);
-
-       }
-       50% {
-           transform:rotate(90deg);
-
-       }
-       to {
-           transform:rotate(180deg);
-
-       }
-   }
-   @-o-keyframes rotate {
-       from {
-           transform:rotate(0deg);
-
-       }
-       50% {
-           transform:rotate(90deg);
-
-       }
-       to {
-           transform:rotate(180deg);
-
-       }
-   }
-
-   #thanks {
-
-    text-align: center;
-    -webkit-animation: rotate 10s linear 2s;
-       -moz-animation: rotate 10s linear 2s;
-        -ms-animation: rotate 10s linear 2s;
-         -o-animation: rotate 10s linear 2s;
-            animation: rotate 10s linear 2s;
-   }
-</style>
 
 <body style='display: none'>
 
@@ -444,9 +343,11 @@ ab -n100 -c5 -r -k http://localhost:8080/rest/wine/meursault</pre>
 </article>
 
 <article>
-    <h1 id="thanks">
+    <div id="thanks">
+    <h1>
     Thanks !
     </h1>
+    </div>
 </article>
 
 </section>
