@@ -32,11 +32,7 @@ import java.util.List;
 public class WineService {
 
 
-    // TODO Inject MetricRegistry
-/*
-    @Resource
-    private MetricRegistry metrics;
-*/
+    // TODO Exercise 8 - Inject MetricRegistry
 
     private final List<Wine> repository = Arrays.asList(
             new Wine("Xebia premiére côte", "Short description", "http://img.xebia.fr/default.png", 2013, Region.BORDEAUX),
@@ -61,8 +57,7 @@ public class WineService {
         WineUtils.randomException();
         for (Wine wine : repository) {
             if (name.equalsIgnoreCase(wine.getName())){
-                  // TODO Add a meter to monitor region distribution rate in searches
-  //              metrics.meter(MetricRegistry.name("search.region.", wine.getRegion().name().toLowerCase())).mark();
+                  // TODO Exercise 8 - Add a meter to monitor region distribution rate in searches ('search.region.[bourguogne/..].meter')
 
                 return wine;
             }
@@ -77,12 +72,11 @@ public class WineService {
         List<Wine> res = new ArrayList<Wine>();
         for (Wine wine : repository) {
             if (wine.match(name)){
-                // TODO Add a meter to monitor region distribution rate in searches
-    //            metrics.meter(MetricRegistry.name("search.region", wine.getRegion().name().toLowerCase())).mark();
+                // TODO Exercise 8 - Add a meter to monitor region distribution rate in searches ('search.region.[bourguogne/..].meter')
+
                 res.add(wine);
             }
         }
-
 
         return res;
     }

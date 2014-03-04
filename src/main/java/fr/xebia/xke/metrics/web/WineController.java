@@ -136,14 +136,13 @@ public class WineController {
 
 
     /**
-     * TODO Add a meter to monitor error rate
+     * TODO Exercise 8 - Add a meter to monitor error rate ('wine.controller.exception')
      * @param e
      * @return
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e){
 
-    //    metricRegistry.meter("wine.controler.exception").mark();
         return new ResponseEntity<ErrorResponse>(new ErrorResponse(e), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
