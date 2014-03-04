@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 
 <!--
-  Google HTML5 slide template
 
-  Authors: Luke Mahé (code)
-           Marcin Wichary (code and design)
-           
-           Dominic Mazzoni (browser compatibility)
-           Charles Chen (ChromeVox support)
-
-  URL: http://code.google.com/p/html5slides/
--->
+ -->
 
 <html>
 <head>
@@ -22,8 +14,6 @@
 </head>
 
 <style>
-    /* Your individual styles here, or just use inline styles if that’s
-       what you want. */
 
     .slides.template-xebia article.xlogo {
         background: white url(images/logo-alliance-97.png) 25% 50% no-repeat;
@@ -59,6 +49,72 @@
         padding-top: 10%;
     }
 
+   @-webkit-keyframes rotate {
+       from {
+           transform:rotate(0deg);
+
+       }
+       50% {
+           transform:rotate(90deg);
+
+       }
+       to {
+           transform:rotate(180deg);
+
+       }
+   }
+   @-moz-keyframes rotate {
+       from {
+           transform:rotate(0deg);
+
+       }
+       50% {
+           transform:rotate(90deg);
+
+       }
+       to {
+           transform:rotate(180deg);
+
+       }
+   }
+   @-ms-keyframes rotate {
+       from {
+           transform:rotate(0deg);
+
+       }
+       50% {
+           transform:rotate(90deg);
+
+       }
+       to {
+           transform:rotate(180deg);
+
+       }
+   }
+   @-o-keyframes rotate {
+       from {
+           transform:rotate(0deg);
+
+       }
+       50% {
+           transform:rotate(90deg);
+
+       }
+       to {
+           transform:rotate(180deg);
+
+       }
+   }
+
+   #thanks {
+
+    text-align: center;
+    -webkit-animation: rotate 10s linear 2s;
+       -moz-animation: rotate 10s linear 2s;
+        -ms-animation: rotate 10s linear 2s;
+         -o-animation: rotate 10s linear 2s;
+            animation: rotate 10s linear 2s;
+   }
 </style>
 
 <body style='display: none'>
@@ -313,9 +369,14 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/Meursault/buy</pre>
     <p class="green pad-top">
         Our goal here, is to demonstrate the use of timer to monitor method response time.
     </p>
-    <p class="build">
-        Call both cached and not cached find wine, and monitor the result using the metrics servlet or JMX.
-    </p>
+    <div class="build pad-top">
+        <p>Call both cached and not cached find wine, and monitor the result using the metrics servlet or JMX.</p>
+        <section>
+            <pre class="lang-bash">
+ab -n100 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia && \
+ab -n100 -c5 -r -k http://localhost:8080/rest/cached/wine/search/Xebia</pre>
+        </section>
+    </div>
 </article>
 
 <article>
@@ -338,48 +399,55 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/Meursault/buy</pre>
         Exercise #11 - Build a custom HealthCheck controller
     </h3>
     <p class="green pad-top">
-
-        TODO
+        Default Metrics HealthCheckServlet is good, but we already have a custom protocol for loadbalancers ping.
     </p>
+    <ul class="build pad-top">
+        <li>Inject HealthCheck Registry in HealthCheckController</li>
+        <li>Implement healthcheck service on GET method</li>
+        <li>Browse result at <a href="http://localhost:8080/admin/healthcheck">http://localhost:8080/admin/healthcheck</a> </li>
+    </ul>
 </article>
 
 <article>
     <h3>
-        Exercise #12 - Add Spring extension dependency
+        Exercise #12 - Use @Timed and @ExceptionMetered Annotations with Spring
     </h3>
     <p class="green pad-top">
-
-        TODO
+        Metrics have a lots of extensions, to integrate reporters and frameworks like HTTPClient, Jersey, EhCache, ...
+        We now want to see the spring integration in action.
     </p>
+    <ul class="build">
+        <li>Add spring-metrics dependency</li>
+        <li>Configure annotation driven for metrics in root.xml</li>
+        <li>Add annotations to monitor WineService.loadByName()</li>
+    </ul>
+    <section class="build">
+            <pre class="lang-bash">
+ab -n100 -c5 -r -k http://localhost:8080/rest/wine/meursault</pre>
+    </section>
 </article>
 
 <article>
     <h3>
-        Exercise #13 - Use annotations to register metrics
+        Exercise #13 - Export data to HostedGraphite
     </h3>
     <p class="green pad-top">
-
-        TODO
+        All those metrics can now be exported to a graphite instance. You can try it on <a href="http://www.hostedgraphite.com">Hosted Graphite</a>.
     </p>
+    <ul class="build pad-top">
+        <li>Apply for a HostedGraphite free trial</li>
+        <li>Add metrics-graphite dependency</li>
+        <li>Add and configure GraphiteReporter</li>
+        <li>Use host: <b>carbon.hostedgraphite.com</b> and port: <b>2003</b></li>
+        <li>Use your API-KEY as metric prefix (1aece4d2-2775-406a-bcba-657cb4bf3395)</li>
+    </ul>
 </article>
 
 <article>
-    <h3>
-        Exercise #14 - Export data to Graphite
-    </h3>
-    <p class="green pad-top">
-
-        TODO
-    </p>
-</article>
-
-<article>
-    <h1>
-    Thanks
+    <h1 id="thanks">
+    Thanks !
     </h1>
 </article>
-
-
 
 </section>
 

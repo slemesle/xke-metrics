@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 <!--
-TODO Add Metrics Spring name space and annotation-driven configuration
+TODO Exercise 12 - Add Metrics Spring name space and annotation-driven configuration
 Namespace :
        xmlns:metrics="http://www.ryantenney.com/schema/metrics"
 
@@ -23,6 +23,5 @@ Namespace :
     <mvc:annotation-driven />
     <mvc:default-servlet-handler/>
 
-    <!--<metrics:annotation-driven metric-registry="metricRegistry" health-check-registry="healthCheckRegistry"/>-->
 
 </beans>

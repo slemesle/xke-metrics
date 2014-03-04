@@ -48,9 +48,7 @@ public class WineService {
     );
 
 
-    // TODO Add Timed and ExceptionMetered annotations to demonstrate spring integration
-//    @Timed(name = "metrics.loadbyname.time")
-//    @ExceptionMetered(name = "metrics.loadbyname.error" )
+    // TODO Exercise 12 - Add Timed and ExceptionMetered annotations to demonstrate spring integration
     public Wine loadByName(String name) {
 
         WineUtils.randomSleep();

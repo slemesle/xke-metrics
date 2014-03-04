@@ -60,20 +60,21 @@
         </dependency>
 
 
-        <!--  TODO  Exercice 1  Add Metrics dependency    -->
+        <!--  TODO  Exercice 1 - Add Metrics dependency    -->
 
 
-        <!--  TODO  Exercice 2  Add metrics-servlet and metrics-servlets dependencies    -->
+        <!--  TODO  Exercice 2 - Add metrics-servlet and metrics-servlets dependencies    -->
 
 
-        <!--  TODO Exercise 3 Add metrics-jvm dependency  -->
-<!--
-        <dependency>
-            <groupId>com.ryantenney.metrics</groupId>
-            <artifactId>metrics-spring</artifactId>
-            <version>${metrics-spring.version}</version>
-        </dependency>-->
-<!--            Test dependencies       -->
+
+        <!--  TODO Exercise 3 - Add metrics-jvm dependency  -->
+
+
+
+        <!--  TODO Exercise 12 - Add metric-spring dependency -->
+
+
+        <!--            Test dependencies       -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

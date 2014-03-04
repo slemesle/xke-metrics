@@ -22,43 +22,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.annotation.Resource;
-import java.util.Map;
-import java.util.SortedMap;
 
 /**
- * TODO Implement a custom healthceck controller
- * Created by slemesle on 02/03/2014.
+ * TODO Exercise 11 - Implement a custom healthcheck controller
+ * Inject the Registry, run health checks then iterate over the result to return a string of the form :
+ *
+ * name:[OK/KO (description)]|name:[OK/KO (description)]|...
+ *
+ * Response code should be 200 OK when healthy and 412 PRECONDITION FAILED when not healthy.
  */
 @Controller("/admin/*")
-public class HealthCheckControler {
+public class HealthCheckController {
 
-/*
-    @Resource
-    HealthCheckRegistry registry;
-*/
 
     @RequestMapping(value = "healthcheck", method = RequestMethod.GET, produces = "text/plain")
     public ResponseEntity<String> runChecks(){
 
-/*
         boolean healthy = true;
         StringBuilder sb = new StringBuilder();
-        SortedMap<String,HealthCheck.Result> checks = registry.runHealthChecks();
-        for (Map.Entry<String, HealthCheck.Result> entry : checks.entrySet()) {
-            sb.append(entry.getKey()).append(":");
-            if (!entry.getValue().isHealthy()){
-                healthy = false;
-                sb.append("KO").append(" (").append(entry.getValue().getMessage()).append(")");
-            } else {
-                sb.append("OK");
-            }
-            sb.append('|');
-        }
-        sb.deleteCharAt(sb.length() -1);
-*/
 
-        return new ResponseEntity<String>(/*sb.toString(),  healthy ? */HttpStatus.OK /*: HttpStatus.PRECONDITION_FAILED*/);
+        // TODO Exercise 11 - run checks here and build response String
+
+        return new ResponseEntity<String>(sb.toString(), HttpStatus.OK);
     }
 
 
