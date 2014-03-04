@@ -35,14 +35,11 @@ public class SpringConfiguration {
     @Bean(name = "metricRegistry") @Scope
     Object provideMetricsRegistry(){
 
-
         // TODO Exercise 3 - add default JVM Metrics
-     /*
 
-        JmxReporter reporter = JmxReporter.forRegistry(result).build();
-        reporter.start();
-*/
-        // TODO add JMX reporter
+
+
+        // TODO Exercise 4 - add JMX reporter
         return null;
     }
 
