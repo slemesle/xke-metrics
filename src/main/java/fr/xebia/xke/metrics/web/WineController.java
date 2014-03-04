@@ -65,10 +65,8 @@ public class WineController {
 
     final LoadingCache<String, List<Wine>> searchCache;
 
-    // TODO inject Metrics Registry
-    //@Autowired
-    public WineController(/*MetricRegistry metricRegistry*/) {
-//        this.metricRegistry = metricRegistry;
+    // TODO Exercise 5 - inject Metrics Registry with @Autowired on constructor
+    public WineController() {
         searchCache = CacheBuilder.newBuilder().maximumSize(200)
                 .expireAfterAccess(2, TimeUnit.MINUTES).recordStats()
                 .build(CacheLoader.from(new Function<String, List<Wine>>() {
@@ -78,47 +76,15 @@ public class WineController {
                     }
                 }));
 
+        // TODO Exercise 5 - register Gauges for cache size, hits, miss, ratio, choose appropriate name
+        // Hint : Ratio is hitCount / requestCount
+
+
+        // TODO Exercise 6 - Register new created MetricsSet to the registry also remember to remove previously created gauges
 
         //TODO add two timers to monitor find service response time in cached and direct mode
         //cachedSearchTimer = metricRegistry.timer("find.cached");
         //directSearchTimer = metricRegistry.timer("find.direct");
-    }
-
-    @PostConstruct
-    public void doPostInit(){
-/*
-        // TODO Add a gauge to registry for cache size
-        metricRegistry.register(MetricRegistry.name(WineController.class, "search", "cache", "size"), new Gauge<Long>() {
-            @Override
-            public Long getValue() {
-                return searchCache.size();
-            }
-        });
-        // TODO Add a gauge to registry for cache hits
-        metricRegistry.register(MetricRegistry.name(WineController.class, "search", "cache", "hits"), new Gauge<Long>() {
-            @Override
-            public Long getValue() {
-                return searchCache.stats().hitCount();
-            }
-        });
-        // TODO Add a gauge to registry for cache miss
-        metricRegistry.register(MetricRegistry.name(WineController.class, "search", "cache", "miss"), new Gauge<Long>() {
-            @Override
-            public Long getValue() {
-                return searchCache.stats().missCount();
-            }
-        });        // TODO Add a gauge to registry for cache hit ratio
-        metricRegistry.register(MetricRegistry.name(WineController.class, "search", "cache", "miss"), new RatioGauge() {
-            @Override
-            protected Ratio getRatio() {
-                return Ratio.of(searchCache.stats().hitCount(), searchCache.stats().requestCount());
-            }
-
-        });
-*/
-
-        // TODO Register new created MetricSet
-     //   metricRegistry.registerAll(new GuavaCacheMetricsSet(searchCache, MetricRegistry.name(WineController.class, "search", "cache" ) ));
     }
 
     @RequestMapping(value = "/wine/{name}", method = RequestMethod.GET, produces = "application/json")

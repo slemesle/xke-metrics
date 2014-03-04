@@ -28,20 +28,16 @@ import java.util.UUID;
  *
  * This class simulate an order service using a third party remote service.
  *
- * Created by slemesle on 28/02/2014.
+ * TODO Exercise 7 - add a counter to maintain the exact running placeOrder service First inject the registry,
+ * then increment and decrement the counter.
  */
 @Service
 public class OrderService {
 
 
-/*
-    @Resource
-    private MetricRegistry registry;
-*/
-
     public OrderResponse placeOrder(Wine wine){
 
-     //   registry.counter("order.running.count").inc();
+        // TODO Exercise 7 - increment 'order.running.count'
 
         try {
             WineUtils.randomException();
@@ -50,7 +46,7 @@ public class OrderService {
             WineUtils.randomSleep();
             return response;
         } finally {
-       //     registry.counter("order.running.count").dec();
+       //  TODO Exercise 7 -   decrement here
         }
 
     }
