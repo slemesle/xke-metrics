@@ -22,33 +22,20 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * TODO Implement this healtcheck using the DatabaseService class
+ * TODO  Exercise 10 - extend HealtCheck  and implement missing method, using  DatabaseService#ping() method.
  *
  * Created by slemesle on 02/03/2014.
  */
 @Component
-public class DbHealthCheck /*extends HealthCheck*/ {
+public class DbHealthCheck  {
 
-//    private final HealthCheckRegistry registry;
     private final DatabaseService dbService;
 
-    @Autowired
-    public DbHealthCheck(/*HealthCheckRegistry registry, */DatabaseService dbService ) {
-        //this.registry = registry;
+    // TODO Exercise 10 - Add the HealthCheckRegistry as dependency to register against it
+     @Autowired
+    public DbHealthCheck(DatabaseService dbService) {
 
         this.dbService = dbService;
-
-     //   registry.register("database", this);
     }
 
-    /*@Override
-    protected Result check() throws Exception {
-         Result  result= null;
-        if (dbService.ping()){
-            result = Result.healthy();
-        } else {
-            result = Result.unhealthy("Got bad result on database select test");
-        }
-        return result;
-    }*/
 }

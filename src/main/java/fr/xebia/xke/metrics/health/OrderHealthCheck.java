@@ -22,33 +22,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *
+ * TODO Exercise 10 - Extend HealthCheck, implement the missing method using OrderSerivce#pingPaypal() and register OrderHealthCheck against registry
  * Created by slemesle on 02/03/2014.
 */
 @Component
-public class OrderHealthCheck /*extends HealthCheck*/ {
+public class OrderHealthCheck {
 
-    //private final HealthCheckRegistry registry;
     private final OrderService orderService;
 
     @Autowired
-    public OrderHealthCheck(/*HealthCheckRegistry registry,*/ OrderService orderService) {
-        //this.registry = registry;
+    public OrderHealthCheck(OrderService orderService) {
         this.orderService = orderService;
-
-        //registry.register("PaypalOrder", this);
     }
 
-/*
-    @Override
-    protected Result check() throws Exception {
-
-        if (orderService.pingPaypal() ){
-            return Result.healthy();
-        } else {
-            return Result.unhealthy("Functional failure on Paypal Servuce check your account");
-        }
-
-    }
-*/
 }

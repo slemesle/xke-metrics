@@ -311,8 +311,10 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/Meursault/buy</pre>
 <article>
     <h3>Exercise #9 - Use timers to monitor wine controller reponse time</h3>
     <p class="green pad-top">
-
-        TODO
+        Our goal here, is to demonstrate the use of timer to monitor method response time.
+    </p>
+    <p class="build">
+        Call both cached and not cached find wine, and monitor the result using the metrics servlet or JMX.
     </p>
 </article>
 
@@ -321,9 +323,14 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/Meursault/buy</pre>
         Exercise #10 - Build our own HealthChecks
     </h3>
     <p class="green pad-top">
-
-        TODO
+        We want to be able to remove the webapp from production when it becomes unavailable. This can also be used
+        to build a circuit breaker pattern. <br/> Here, we will build health check for the database and the order client.
     </p>
+    <ul class="build pad-top">
+        <li>Build the DBHealthCheck class</li>
+        <li>Build the OrderHealthCheck class</li>
+        <li>Check result on <a href="http://localhost:8080/admin/metrics/healthcheck">healthcheck servlet</a> </li>
+    </ul>
 </article>
 
 <article>

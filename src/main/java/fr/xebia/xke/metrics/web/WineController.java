@@ -49,11 +49,6 @@ import java.util.concurrent.TimeUnit;
 public class WineController {
 
     private static final Logger log = LoggerFactory.getLogger(WineController.class);
-/*
-    private final Timer cachedSearchTimer;
-    private final Timer directSearchTimer;
-    private final MetricRegistry metricRegistry;
-*/
 
     @Resource
     private WineService wineService;
@@ -82,9 +77,7 @@ public class WineController {
 
         // TODO Exercise 6 - Register new created MetricsSet to the registry also remember to remove previously created gauges
 
-        //TODO add two timers to monitor find service response time in cached and direct mode
-        //cachedSearchTimer = metricRegistry.timer("find.cached");
-        //directSearchTimer = metricRegistry.timer("find.direct");
+        //TODO Exercise 9 add two timers to monitor find service response time in cached and direct mode ('find.cached', 'find.direct') as fields
     }
 
     @RequestMapping(value = "/wine/{name}", method = RequestMethod.GET, produces = "application/json")
@@ -98,21 +91,20 @@ public class WineController {
     @RequestMapping(value = "/wine/search/{name}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Wine>> findByName(@PathVariable String name) {
 
-       // Timer.Context time = directSearchTimer.time();
+       // TODO Exercise 9 - start timer for find.cached
 
         try {
             List<Wine> result = wineService.findByName(name);
 
             return new ResponseEntity<List<Wine>>(result, HttpStatus.OK);
         } finally {
-         //   time.stop();
+            // TODO Exercise 9 Stop timer
         }
     }
 
     @RequestMapping(value = "/cached/wine/search/{name}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Wine>> findCachedByName(@PathVariable String name) {
-        //Timer.Context time = cachedSearchTimer.time();
-
+        // TODO Exercise 9 - start timer for find.cached
         try {
             List<Wine> result = null;
             try {
@@ -124,7 +116,7 @@ public class WineController {
             }
             return new ResponseEntity<List<Wine>>(new ArrayList<Wine>(), HttpStatus.NO_CONTENT);
         } finally {
-       //     time.stop();
+       // TODO 9 - stop timer
         }
     }
 
