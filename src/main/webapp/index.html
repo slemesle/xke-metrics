@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 
 <!--
-  Google HTML5 slide template
 
-  Authors: Luke Mahé (code)
-           Marcin Wichary (code and design)
-           
-           Dominic Mazzoni (browser compatibility)
-           Charles Chen (ChromeVox support)
-
-  URL: http://code.google.com/p/html5slides/
--->
+ -->
 
 <html>
 <head>
@@ -19,47 +11,20 @@
     <meta charset='utf-8'>
     <script
             src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+
+    <link href="styles/styles.css" type="text/css" />
 </head>
 
-<style>
-    /* Your individual styles here, or just use inline styles if that’s
-       what you want. */
-
-  .slides.template-xebia article.xlogo {
-    background: white url(images/logo-alliance-97.png) 25% 50% no-repeat;
-  }
-
-  .slides.template-xebia article.metricslogo {
-    background: white url(images/xmetrics-hat.png) 5% 5% no-repeat;
-  }
-
-  article.xlogo h1 {
-    padding-top: 10%;
-    padding-left:40%;
-  }
-    article.xlogo p {
-        padding-left: 40%;
-    }
-  
-  .slides.template-xebia > article:not(.nobackground):not(.xlogo):not(.metricslogo) {
-    background: white url(images/logo-alliance-97.png) 800px 650px no-repeat;
-    background-size:40px 40px;
-  }
-
-   img.left-img {
-       padding-left: 25%;
-   }
-
-</style>
 
 <body style='display: none'>
 
 <section class='slides layout-regular template-xebia'>
 
 <article class='xlogo'>
-  <h1>
+    <h1>
         XKE Metrics</h1>
-        <p>
+
+    <p>
         @slemesle, Mars 2014
     </p>
 </article>
@@ -77,13 +42,13 @@
 
 <article>
     <h1>Let see what's in the box ?</h1>
-    <img class="left-img" width="400px"  src="images/mystery-box1.jpg"/>
+    <img class="left-img" width="400px" src="images/mystery-box1.jpg"/>
 
 </article>
 
 <article>
     <h3>
-    Gauges, represent an instantaneous value
+        Gauges, represent an instantaneous value
     </h3>
     <img src="images/gauge.jpg" style="padding-left: 25%; padding-top: 5%"/>
 </article>
@@ -92,7 +57,7 @@
     <h3>
         Counter, is a Gauge backed by an AtomicInteger
     </h3>
-    <comment><i>You can increment or decrement them</i> </comment>
+    <comment><i>You can increment or decrement them</i></comment>
     <img src="images/finger_count.jpg" style="padding-top: 20% " width="800px">
 </article>
 
@@ -131,14 +96,22 @@
     <h1>
         You know all you need, now let's play !
     </h1>
-    <comment>Keep in mind, you can always browse the documentation <a href="http://metrics.codahale.com/manual/" target="_blank">here</a>.</comment>
+    <comment>Keep in mind, you can always browse the documentation <a href="http://metrics.codahale.com/manual/"
+                                                                      target="_blank">here</a>.
+    </comment>
+</article>
+
+<article>
+    <h3>Here is the documentation</h3>
+    <iframe src="http://metrics.codahale.com/manual/"></iframe>
 </article>
 
 <article style="text-align: center">
     <h1>
         Checkout the repository
     </h1>
-    <p >
+
+    <p>
         <a href="https://github.com/slemesle/xke-metrics">https://github.com/slemesle/xke-metrics</a>
     </p>
 </article>
@@ -147,137 +120,234 @@
     <h1>
         Run the webserver
     </h1>
+
     <p>mvn jetty:run</p>
+
     <h2>You can now browse the slides on <a href="http://localhost:8080/">http://localhost:8080/</a></h2>
 </article>
 
 <article>
     <h3>
-    Exercise #1 - Add Metrics dependency and setting
-    </h3>
-    <p>
-    </p>
-</article>
-
-<article>
-    <h3>
-        Slide with an image (centered)
-    </h3>
-    <p>
-        <img class='centered' style='height: 500px' src='images/example-graph.png'>
-    </p>
-    <div class='source'>
-        Source: Larry Page
-    </div>
-</article>
-
-<article class='fill'>
-    <h3>
-        Image filling the slide (with optional header)
-    </h3>
-    <p>
-        <img src='images/example-cat.jpg'>
-    </p>
-    <div class='source white'>
-        Source: Eric Schmidt
-    </div>
-</article>
-
-<article>
-    <h3>
-        This slide has some code
+        Exercise #1 - Add metrics-core dependency and provide it in SpringConfiguration
     </h3>
     <section>
         <pre>
-&lt;script type='text/javascript'&gt;
-  // Say hello world until the user starts questioning
-  // the meaningfulness of their existence.
-  function helloWorld(world) {
-    for (var i = 42; --i &gt;= 0;) {
-      alert('Hello ' + String(world));
-    }
-  }
-&lt;/script&gt;
-&lt;style&gt;
-  p { color: pink }
-  b { color: blue }
-  u { color: 'umber' }
-&lt;/style&gt;
-</pre>
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.codahale.metrics&lt;/groupId&gt;
+            &lt;artifactId&gt;metrics-core&lt;/artifactId&gt;
+            &lt;version&gt;3.0.1&lt;/version&gt;
+        &lt;/dependency&gt;
+        </pre>
     </section>
-</article>
-
-<article class='smaller'>
-    <h3>
-        This slide has some code (small font)
-    </h3>
-    <section>
-        <pre>
-&lt;script type='text/javascript'&gt;
-  // Say hello world until the user starts questioning
-  // the meaningfulness of their existence.
-  function helloWorld(world) {
-    for (var i = 42; --i &gt;= 0;) {
-      alert('Hello ' + String(world));
-    }
-  }
-&lt;/script&gt;
-&lt;style&gt;
-  p { color: pink }
-  b { color: blue }
-  u { color: 'umber' }
-&lt;/style&gt;
-</pre>
-    </section>
-</article>
-
-<article>
-    <q>
-        The best way to predict the future is to invent it.
-    </q>
-    <div class='author'>
-        Alan Kay
-    </div>
-</article>
-
-<article class='smaller'>
-    <q>
-        A distributed system is one in which the failure of a computer
-        you didn’t even know existed can render your own computer unusable.
-    </q>
-    <div class='author'>
-        Leslie Lamport
-    </div>
-</article>
-
-<article class='nobackground'>
-    <h3>
-        A slide with an embed + title
-    </h3>
-
-    <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
-</article>
-
-<article class='nobackground'>
-    <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
-</article>
-
-<article class='fill'>
-    <h3>
-        Full-slide embed with (optional) slide title on top
-    </h3>
-    <iframe src='http://www.google.com/doodle4google/history.html'></iframe>
+    <p class="center">
+    <comment>Check the TODO Exercise 1 !<br/>
+        SpringConfigurationTest TU should pass :)
+    </comment>
+    </p>
 </article>
 
 <article>
     <h3>
-        Thank you!
+        Exercise #2 - Instrument the web application using metrics servlets
     </h3>
-
-    <ul>
-        <li>
-            <a href='http://www.google.com'>google.com</a>
+    <ul class="build">
+        <li>Add metrics-servlet and metrics-servlets dependencies</li>
+        <li>Add Metrics servlets mapping in web.xml</li>
+        <li>Add InstrumentedFilter on top of spring mvc</li>
     </ul>
+    <div class="build" style="padding-top: 10%">
+        <p>
+            Now Browse youre webapp to <a href="http://localhost:8080/admin/metrics">metrics servlet</a> and appreciate
+            youre brand new URLs.
+        </p>
+
+        <p class="blue">
+            Run ab to generate metrics data:</p>
+        <section><pre class="lang-bash">
+ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre>
+        </section>
+        </p>
+    </div>
+</article>
+
+<article>
+    <h3>Exercise #3 - Add some default metrics to the registry</h3>
+
+    <div class="build pad-top">
+        <p>
+            First add metrics-jvm dependency.
+        </p>
+
+        <p>
+            Then, simply add provided MetricSet to the registry.<br/>
+            We need : GarbageCollectorMetricSet, MemoryUsageGaugeSet, ThreadStatesGaugeSet and a BufferPoolMetricSet.
+        </p>
+
+        <p>
+            Browse the <a href="http://localhost:8080/admin/metrics/metrics">metrics</a> servlet to see changes.
+        </p>
+    </div>
+</article>
+
+<article>
+    <h3 style="padding-top: 25%;">
+        Exercise #4 - Now expose our metrics using JMX
+    </h3>
+    <comment>
+        Use jvisualvm or jconsole to see MBeans.
+    </comment>
+</article>
+
+<article>
+    <h3>
+        Exercise #5 - Use a Gauge to monitor the Wine cache
+    </h3>
+    <p class="green">
+        WineController uses a cache to improve search performance. We want to monitor this cache properly.<br/>
+        So we need hit / miss / size and hit ratio on the cache.
+    </p>
+    <ul class="build">
+        <li>Inject the registry to WineController</li>
+        <li>Register needed gauges to monitor the guava cache</li>
+        <li>Get <a  href="http://localhost:8080/rest/cached/wine/search/de">/rest/cached/wine/search/de</a> and different search key to warm the cache</li>
+        <li>Look at the exposed stats using JMX or metrics servlet</li>
+    </ul>
+</article>
+
+<article class="smaller">
+    <q>
+        This is way too verbose for my controller :p !
+    </q>
+</article>
+
+<article>
+    <h3>
+        Exercise #6 - Define a MetricSet to expose the cache metrics
+    </h3>
+    <p class="green pad-top">
+        The previous Gauges have polluted our Controller, we should better create a MetricSet,<br/> that will be
+        responsible for cache metrics registry.
+    </p>
+    <p class="pad-top">
+        Implement the MetricSet interface in GuavaCacheMetricSet and expose the cache stats.
+    </p>
+</article>
+
+<article>
+    <h3>
+        Exercise #7 - Add a counter to monitor running order service Paypal clients
+    </h3>
+    <p class="pad-top green">
+        The goal here, is to know the count of running Paypal clients, because we have a limited access.
+    </p>
+    <div class="build pad-top">
+        <p>Run ab and monitor the counter</p>
+        <section>
+            <pre class="lang-bash">
+ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/Meursault/buy</pre>
+        </section>
+    </div>
+</article>
+
+<article>
+    <h3>
+        Exercise #8 - Use a meter to monitor error rate and wine search distribution
+    </h3>
+    <p class="green pad-top">
+        Our goal here, is to demonstrate the use of a meter to run technical and business monitoring.
+    </p>
+    <ul class="pad-top">
+        <li>Mark the error rate on WineController exception handler</li>
+        <li>Mark search rate by region in WineService</li>
+    </ul>
+</article>
+
+<article>
+    <h3>Exercise #9 - Use timers to monitor wine controller reponse time</h3>
+    <p class="green pad-top">
+        Our goal here, is to demonstrate the use of timer to monitor method response time.
+    </p>
+    <div class="build pad-top">
+        <p>Call both cached and not cached find wine, and monitor the result using the metrics servlet or JMX.</p>
+        <section>
+            <pre class="lang-bash">
+ab -n100 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia && \
+ab -n100 -c5 -r -k http://localhost:8080/rest/cached/wine/search/Xebia</pre>
+        </section>
+    </div>
+</article>
+
+<article>
+    <h3>
+        Exercise #10 - Build our own HealthChecks
+    </h3>
+    <p class="green pad-top">
+        We want to be able to remove the webapp from production when it becomes unavailable. This can also be used
+        to build a circuit breaker pattern. <br/> Here, we will build health check for the database and the order client.
+    </p>
+    <ul class="build pad-top">
+        <li>Build the DBHealthCheck class</li>
+        <li>Build the OrderHealthCheck class</li>
+        <li>Check result on <a href="http://localhost:8080/admin/metrics/healthcheck">healthcheck servlet</a> </li>
+    </ul>
+</article>
+
+<article>
+    <h3>
+        Exercise #11 - Build a custom HealthCheck controller
+    </h3>
+    <p class="green pad-top">
+        Default Metrics HealthCheckServlet is good, but we already have a custom protocol for loadbalancers ping.
+    </p>
+    <ul class="build pad-top">
+        <li>Inject HealthCheck Registry in HealthCheckController</li>
+        <li>Implement healthcheck service on GET method</li>
+        <li>Browse result at <a href="http://localhost:8080/admin/healthcheck">http://localhost:8080/admin/healthcheck</a> </li>
+    </ul>
+</article>
+
+<article>
+    <h3>
+        Exercise #12 - Use @Timed and @ExceptionMetered Annotations with Spring
+    </h3>
+    <p class="green pad-top">
+        Metrics have a lots of extensions, to integrate reporters and frameworks like HTTPClient, Jersey, EhCache, ...
+        We now want to see the spring integration in action.
+    </p>
+    <ul class="build">
+        <li>Add spring-metrics dependency</li>
+        <li>Configure annotation driven for metrics in root.xml</li>
+        <li>Add annotations to monitor WineService.loadByName()</li>
+    </ul>
+    <section class="build">
+            <pre class="lang-bash">
+ab -n100 -c5 -r -k http://localhost:8080/rest/wine/meursault</pre>
+    </section>
+</article>
+
+<article>
+    <h3>
+        Exercise #13 - Export data to HostedGraphite
+    </h3>
+    <p class="green pad-top">
+        All those metrics can now be exported to a graphite instance. You can try it on <a href="http://www.hostedgraphite.com">Hosted Graphite</a>.
+    </p>
+    <ul class="build pad-top">
+        <li>Apply for a HostedGraphite free trial</li>
+        <li>Add metrics-graphite dependency</li>
+        <li>Add and configure GraphiteReporter</li>
+        <li>Use host: <b>carbon.hostedgraphite.com</b> and port: <b>2003</b></li>
+        <li>Use your API-KEY as metric prefix (1aece4d2-2775-406a-bcba-657cb4bf3395)</li>
+    </ul>
+</article>
+
+<article>
+    <div id="thanks">
+        <h1>
+            Thanks !
+        </h1>
+    </div>
 </article>
 
 </section>

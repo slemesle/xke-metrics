@@ -1,0 +1,101 @@
+.slides.template-xebia article.xlogo {
+    background: white url(../images/logo-alliance-97.png) 25% 50% no-repeat;
+}
+
+.slides.template-xebia article.metricslogo {
+    background: white url(../images/xmetrics-hat.png) 5% 5% no-repeat;
+}
+
+article.xlogo h1 {
+    padding-top: 10%;
+    padding-left: 40%;
+}
+
+article.xlogo p {
+    padding-left: 40%;
+}
+
+.slides.template-xebia > article:not(.nobackground):not(.xlogo):not(.metricslogo) {
+    background: white url(../images/logo-alliance-97.png) 800px 650px no-repeat;
+    background-size: 40px 40px;
+}
+
+img.left-img {
+    padding-left: 25%;
+}
+
+.center {
+    text-align: center;
+}
+
+.pad-top {
+    padding-top: 10%;
+}
+
+@keyframes rotate {
+    from {
+        transform:rotate(0deg) scale(0);
+    }
+    to {
+        transform:rotate(720deg)  scale(1);
+    }
+}
+@-webkit-keyframes rotate {
+    from {
+        transform:rotate(0deg) scale(0);
+        -webkit-transform:rotate(0deg) scale(0);
+
+    }
+    to {
+        transform:rotate(720deg)  scale(1);
+        -webkit-transform:rotate(720deg) scale(1);
+    }
+}
+@-moz-keyframes rotate {
+    from {
+        transform:rotate(0deg) scale(0);
+        -moz-transform:rotate(0deg) scale(0);
+
+    }
+    to {
+        transform:rotate(720deg) scale(1);
+        -moz-transform:rotate(720deg) scale(1);
+
+    }
+}
+@-ms-keyframes rotate {
+    from {
+        transform:rotate(0deg) scale(0);
+        -ms-transform:rotate(0deg) scale(0);
+
+    }
+
+    to {
+        transform:rotate(720deg) scale(1);
+        -ms-transform:rotate(720deg) scale(1);
+
+    }
+}
+@-o-keyframes rotate {
+    from {
+        display: block;
+        transform:rotate(0deg) scale(0);
+        -o-transform:rotate(0deg) scale(0);
+
+    }
+    to {
+        display: block;
+        transform:rotate(720deg)  scale(1);
+        -o-transform:rotate(720deg) scale(1);
+    }
+}
+
+#thanks {
+    -webkit-transform: scale(0);
+    text-align: center;
+    -webkit-animation: rotate 2s linear 0s 1 normal forwards;
+    -moz-animation: rotate 2s linear 0s 1 normal forwards;
+    -ms-animation: rotate 2s linear 0s 1 normal forwards;
+    -o-animation: rotate 2s linear 0s 1 normal forwards;
+    animation: rotate 2s linear 0s 1 normal forwards;
+}
