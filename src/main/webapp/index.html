@@ -33,7 +33,7 @@
     <h1>
         So what is Metrics ?
     </h1>
-    <ul class="build">
+    <ul >
         <li>Small library initiated by Yammer</li>
         <li>Developed to create software metrics</li>
         <li>And report them anywhere</li>
@@ -151,12 +151,12 @@
     <h3>
         Exercise #2 - Instrument the web application using metrics servlets
     </h3>
-    <ul class="build">
+    <ul >
         <li>Add metrics-servlet and metrics-servlets dependencies</li>
         <li>Add Metrics servlets mapping in web.xml</li>
         <li>Add InstrumentedFilter on top of spring mvc</li>
     </ul>
-    <div class="build" style="padding-top: 10%">
+    <div  style="padding-top: 10%">
         <p>
             Now Browse youre webapp to <a href="http://localhost:8080/admin/metrics">metrics servlet</a> and appreciate
             youre brand new URLs.
@@ -174,7 +174,7 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre>
 <article>
     <h3>Exercise #3 - Add some default metrics to the registry</h3>
 
-    <div class="build pad-top">
+    <div class=" pad-top">
         <p>
             First add metrics-jvm dependency.
         </p>
@@ -207,7 +207,7 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre>
         WineController uses a cache to improve search performance. We want to monitor this cache properly.<br/>
         So we need hit / miss / size and hit ratio on the cache.
     </p>
-    <ul class="build">
+    <ul >
         <li>Inject the registry to WineController</li>
         <li>Register needed gauges to monitor the guava cache</li>
         <li>Get <a  href="http://localhost:8080/rest/cached/wine/search/de">/rest/cached/wine/search/de</a> and different search key to warm the cache</li>
@@ -241,7 +241,7 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/search/Xebia</pre>
     <p class="pad-top green">
         The goal here, is to know the count of running Paypal clients, because we have a limited access.
     </p>
-    <div class="build pad-top">
+    <div class=" pad-top">
         <p>Run ab and monitor the counter</p>
         <section>
             <pre class="lang-bash">
@@ -268,7 +268,7 @@ ab -n10000 -c5 -r -k http://localhost:8080/rest/wine/Meursault/buy</pre>
     <p class="green pad-top">
         Our goal here, is to demonstrate the use of timer to monitor method response time.
     </p>
-    <div class="build pad-top">
+    <div class=" pad-top">
         <p>Call both cached and not cached find wine, and monitor the result using the metrics servlet or JMX.</p>
         <section>
             <pre class="lang-bash">
@@ -286,7 +286,7 @@ ab -n100 -c5 -r -k http://localhost:8080/rest/cached/wine/search/Xebia</pre>
         We want to be able to remove the webapp from production when it becomes unavailable. This can also be used
         to build a circuit breaker pattern. <br/> Here, we will build health check for the database and the order client.
     </p>
-    <ul class="build pad-top">
+    <ul class=" pad-top">
         <li>Build the DBHealthCheck class</li>
         <li>Build the OrderHealthCheck class</li>
         <li>Check result on <a href="http://localhost:8080/admin/metrics/healthcheck">healthcheck servlet</a> </li>
@@ -300,7 +300,7 @@ ab -n100 -c5 -r -k http://localhost:8080/rest/cached/wine/search/Xebia</pre>
     <p class="green pad-top">
         Default Metrics HealthCheckServlet is good, but we already have a custom protocol for loadbalancers ping.
     </p>
-    <ul class="build pad-top">
+    <ul class=" pad-top">
         <li>Inject HealthCheck Registry in HealthCheckController</li>
         <li>Implement healthcheck service on GET method</li>
         <li>Browse result at <a href="http://localhost:8080/admin/healthcheck">http://localhost:8080/admin/healthcheck</a> </li>
@@ -315,12 +315,12 @@ ab -n100 -c5 -r -k http://localhost:8080/rest/cached/wine/search/Xebia</pre>
         Metrics have a lots of extensions, to integrate reporters and frameworks like HTTPClient, Jersey, EhCache, ...
         We now want to see the spring integration in action.
     </p>
-    <ul class="build">
+    <ul >
         <li>Add spring-metrics dependency</li>
         <li>Configure annotation driven for metrics in root.xml</li>
         <li>Add annotations to monitor WineService.loadByName()</li>
     </ul>
-    <section class="build">
+    <section >
             <pre class="lang-bash">
 ab -n100 -c5 -r -k http://localhost:8080/rest/wine/meursault</pre>
     </section>
@@ -333,7 +333,7 @@ ab -n100 -c5 -r -k http://localhost:8080/rest/wine/meursault</pre>
     <p class="green pad-top">
         All those metrics can now be exported to a graphite instance. You can try it on <a href="http://www.hostedgraphite.com">Hosted Graphite</a>.
     </p>
-    <ul class="build pad-top">
+    <ul class=" pad-top">
         <li>Apply for a HostedGraphite free trial</li>
         <li>Add metrics-graphite dependency</li>
         <li>Add and configure GraphiteReporter</li>
